@@ -7,7 +7,7 @@
 
 /* ─────────────────────────────────────────────────────────────────────────
    1. CONFIG — change the details here; the layout updates itself.
-      (Also update <title> and the og: tags in engagement/index.html,
+      (Also update <title> and the og: tags in index.html,
        because link-preview crawlers do not run JavaScript.)
    ───────────────────────────────────────────────────────────────────────── */
 const CONFIG = {
@@ -61,20 +61,20 @@ const CONFIG = {
   /* Gallery: add/remove freely. Landscape photos are detected and laid out wide automatically.
      wide: true makes a photo span both columns on phones. Missing files are hidden. */
   gallery: [
-    { src: '../assets/images/couple-1.jpg', alt: 'Nandhini smiling in a pink silk saree', caption: 'Her name means joy — and she lives up to it.', wide: true },
-    { src: '../assets/images/couple-2.jpg', alt: 'Prabhu smiling in a white shirt', caption: 'The man with the never-ending smile.' },
-    { src: '../assets/images/couple-3.jpg', alt: 'Nandhini in a purple silk saree in a garden', caption: 'Grace, draped in silk.' },
-    { src: '../assets/images/couple-6.jpg', alt: 'Prabhu in a light blue shirt in front of a flower arch', caption: 'Dressed up, heart wide open.' },
-    { src: '../assets/images/couple-7.jpg', alt: 'Nandhini in a pink and green saree standing on a village road', caption: 'Every road led here.' },
-    { src: '../assets/images/couple-8.jpg', alt: 'Nandhini and Prabhu holding hands at a temple', caption: 'Two hearts, one promise.', wide: true },
+    { src: 'assets/images/couple-1.jpg', alt: 'Nandhini smiling in a pink silk saree', caption: 'Her name means joy — and she lives up to it.', wide: true },
+    { src: 'assets/images/couple-2.jpg', alt: 'Prabhu smiling in a white shirt', caption: 'The man with the never-ending smile.' },
+    { src: 'assets/images/couple-3.jpg', alt: 'Nandhini in a purple silk saree in a garden', caption: 'Grace, draped in silk.' },
+    { src: 'assets/images/couple-6.jpg', alt: 'Prabhu in a light blue shirt in front of a flower arch', caption: 'Dressed up, heart wide open.' },
+    { src: 'assets/images/couple-7.jpg', alt: 'Nandhini in a pink and green saree standing on a village road', caption: 'Every road led here.' },
+    { src: 'assets/images/couple-8.jpg', alt: 'Nandhini and Prabhu holding hands at a temple', caption: 'Two hearts, one promise.', wide: true },
   ],
 
   blessing: 'With the blessings of our families, we invite you to grace the occasion.',
   hashtag: '#PranaBegins',
 
-  wedding: { label: 'The Wedding', when: 'February 2027', note: 'Save the date', link: '../wedding/' },
+  wedding: { label: 'The Wedding', when: 'February 2027', note: 'Save the date', link: 'wedding/' },
   footer: { madeBy: 'Karthikeyan', relation: "bride's brother" },
-  music: { src: '../assets/audio/song1.mp4', volume: 0.5, fadeMs: 2000 },
+  music: { src: 'assets/audio/song1.mp4', volume: 0.5, fadeMs: 2000 },
 };
 
 /* Theme metadata used by the picker, the browser bar colour and the particles. */

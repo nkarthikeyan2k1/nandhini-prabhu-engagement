@@ -3,10 +3,10 @@
 A static, animated engagement invitation (HTML + CSS + vanilla JS), ready for GitHub Pages.
 
 ```
-/index.html               → redirects to ./engagement/
-/engagement/index.html    → the invitation
-/engagement/style.css
-/engagement/script.js     → CONFIG (all editable details) is at the top
+/index.html               → the invitation
+/style.css
+/script.js                → CONFIG (all editable details) is at the top
+/engagement/index.html    → forwards the old /engagement/ link to the root
 /wedding/index.html       → "Coming soon – Feb 2027" page (same theme)
 /assets/images/           → hero.jpg, couple-1.jpg … couple-8.jpg
 /assets/audio/bgm.mp3     → background music (a soft tanpura drone placeholder)
@@ -16,7 +16,7 @@ A static, animated engagement invitation (HTML + CSS + vanilla JS), ready for Gi
 
 ## 1. Edit the details (CONFIG)
 
-Open `engagement/script.js`. Everything editable is in the `CONFIG` object at the top:
+Open `script.js`. Everything editable is in the `CONFIG` object at the top:
 
 | Field | What it controls |
 |---|---|
@@ -32,7 +32,7 @@ Open `engagement/script.js`. Everything editable is in the `CONFIG` object at th
 | `gallery` | photo list: `src`, `alt` (describe the photo), `caption`, optional `wide: true` |
 | `music.src` | path to the music file |
 
-**Also update the `<title>`, `description` and `og:` tags in `engagement/index.html` and `/index.html`** — WhatsApp's link-preview robot does not run JavaScript, so it only sees what is written in the HTML.
+**Also update the `<title>`, `description` and `og:` tags in `index.html`** — WhatsApp's link-preview robot does not run JavaScript, so it only sees what is written in the HTML.
 
 ### Previewing the themes
 Click the swatches at the bottom-left. The page URL changes to `?theme=royal|midnight|temple|pastel`, so you can copy the link and send each version to family to vote. When you have decided, set `CONFIG.theme` and `showThemeSwitcher: false`.
@@ -71,8 +71,8 @@ Current photos: hero = temple photo; 1 pink saree (smiling), 2 white shirt, 3 pu
    git push -u origin main
    ```
 3. On GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: `main` / `(root)` → Save**.
-4. After a minute the site is live at `https://USERNAME.github.io/nandhini-prabhu/` (it redirects to `/engagement/`).
-5. **For a beautiful WhatsApp preview:** in `engagement/index.html` and `/index.html`, replace
+4. After a minute the site is live at `https://USERNAME.github.io/nandhini-prabhu/` (the invitation opens directly at that address).
+5. **For a beautiful WhatsApp preview:** in `index.html`, replace
    `../assets/images/hero.jpg` (and `./assets/images/hero.jpg`) in the `og:image` / `twitter:image` tags with the full URL
    `https://USERNAME.github.io/nandhini-prabhu/assets/images/hero.jpg`, then push again.
    WhatsApp caches previews — if the old preview sticks, add `?v=2` to the link you share.
