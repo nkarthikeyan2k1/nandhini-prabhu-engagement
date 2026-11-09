@@ -64,7 +64,7 @@ const CONFIG = {
     { src: 'assets/images/couple-3.jpg', alt: 'Nandhini in a purple silk saree in a garden', caption: 'Grace, draped in silk.' },
     { src: 'assets/images/prabhu-temple.jpg', alt: 'Prabhu in a white shirt smiling on the steps of a stone temple mandapam', caption: 'Among ancient pillars, a steady heart.' },
     { src: 'assets/images/nandhini-temple.jpg', alt: 'Nandhini in a red salwar smiling on the steps of a stone temple mandapam', caption: 'A smile that lights up every stone.' },
-    { src: 'assets/images/couple-8.jpg', alt: 'Nandhini and Prabhu holding hands at a temple', caption: 'Two hearts, one promise.', wide: true },
+    { src: 'assets/images/couple-arch.jpg', alt: 'Prabhu in a light blue shirt and Nandhini in a blue silk saree smiling in front of a floral arch', caption: 'Two hearts, one promise.', wide: true },
   ],
 
   blessing: 'With the blessings of our elders and the love of our families, we joyfully invite you to celebrate the engagement of',
