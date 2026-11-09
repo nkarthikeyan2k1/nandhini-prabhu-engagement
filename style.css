@@ -557,7 +557,7 @@ html.lenis, html.lenis body { height: auto; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 42% 18%;
+  object-position: 50% 50%;
 }
 .hero__overlay {
   position: absolute;
@@ -811,6 +811,22 @@ html.lenis, html.lenis body { height: auto; }
   color: var(--c-text);
   max-width: 34ch;
   margin-inline: auto;
+}
+.kural { max-width: 36rem; margin-inline: auto; }
+.kural__ta {
+  font-size: clamp(.8rem, 3.9vw, 1.4rem);
+  white-space: nowrap;
+  line-height: 1.9;
+  color: var(--c-heading);
+}
+.kural__en {
+  max-width: 34ch;
+  margin: .9rem auto 0;
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: clamp(1.2rem, 4.4vw, 1.6rem);
+  line-height: 1.55;
+  color: var(--c-text-soft);
 }
 
 .prana {
@@ -1224,38 +1240,28 @@ html.lenis, html.lenis body { height: auto; }
 }
 .blessings__mandala svg { width: 100%; height: 100%; animation: spin 140s linear infinite reverse; }
 .blessings__inner { position: relative; z-index: 1; }
-.blessings__script {
-  font-family: var(--f-script);
-  font-weight: 400;
-  font-size: clamp(2.4rem, 9vw, 4.6rem);
-  line-height: 1.22;
-  max-width: 17ch;
-  margin-inline: auto;
-}
-.blessings__intro {
-  margin-top: 2.2rem;
+.blessings__invite {
   font-family: var(--f-serif);
   font-style: italic;
-  font-size: 1.15rem;
-  color: var(--c-on-dark-soft);
-}
-.blessings__hosts {
-  display: grid;
-  gap: .3rem;
-  margin-top: .5rem;
-  list-style: none;
-  font-family: var(--f-serif);
-  font-weight: 500;
-  font-size: clamp(1.45rem, 5vw, 1.9rem);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  line-height: 1.5;
+  max-width: 28ch;
+  margin-inline: auto;
   color: var(--c-on-dark);
 }
-.blessings__hashtag {
-  margin-top: 1.6rem;
-  font-size: .76rem;
-  font-weight: 500;
-  letter-spacing: .3em;
-  color: var(--c-accent-on-dark);
+.blessings__couple {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .1em .3em;
+  font-family: var(--f-script);
+  font-size: clamp(2.6rem, 11vw, 5.2rem);
+  line-height: 1.15;
+  color: var(--c-on-dark);
 }
+.blessings__heart { width: .42em; height: .42em; color: #E5485F; }
 
 .teaser {
   position: relative;
@@ -1662,7 +1668,7 @@ html.lenis, html.lenis body { height: auto; }
     border-radius: 50% 50% 4px 4px / 37.5% 37.5% 4px 4px;
     box-shadow: 0 30px 80px rgba(var(--c-deep-rgb), .6);
   }
-  .hero__arch-img { width: 100%; height: 100%; object-fit: cover; }
+  .hero__arch-img { width: 100%; height: 100%; object-fit: cover; object-position: 54% 50%; }
   .hero__names {
     position: absolute;
     inset: 0;

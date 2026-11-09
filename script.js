@@ -35,7 +35,7 @@ const CONFIG = {
     name: 'At Our Home',
     address: '7/227, Sakthinagar, Sellampalayam, Karapadi Post, Punjaipuliampatti, Tamil Nadu – 638459',
     mapsLink: 'https://maps.app.goo.gl/wa59oftFmahTqYZN8',
-    mapQuery: 'At Our Home, Sellampalayam, Punjaipuliampatti, Tamil Nadu 638459',  // what the embedded map searches for
+    mapQuery: '11.36693,77.188115',  // exact pin from the Maps link (a name search finds nothing here)
   },
 
   /* Listed one below the other under "For any queries, call". An empty list hides the block. */
@@ -44,16 +44,14 @@ const CONFIG = {
     { name: 'Prabhu', phone: '+91 77085 50125' },
   ],
 
-  hosts: {
-    intro: 'With love from',
-    names: ['The family of Nandhini', 'The family of Prabhu'],
-  },
-
   story: {
     eyebrow: 'How it all began',
     lines: [
       'Some stories begin with a glance, some with a conversation between two families. Theirs began with both — and a quiet “yes” that felt like it had always been written.',
-      'Her name, Nandhini, means “one who brings joy”. His name, Prabhu, means “the lord”. We already know who will really be running the house.',
+      {
+        kural: ['அன்பிற்கும் உண்டோ அடைக்குந்தாழ்', 'ஆர்வலர் புன்கணீர் பூசல் தரும்.'],
+        meaning: 'True love knows no barriers or locks; it gently reveals itself in the quietest, most heartfelt moments.',
+      },
     ],
     wordplay: null,
   },
@@ -61,20 +59,19 @@ const CONFIG = {
   /* Gallery: add/remove freely. Landscape photos are detected and laid out wide automatically.
      wide: true makes a photo span both columns on phones. Missing files are hidden. */
   gallery: [
-    { src: 'assets/images/couple-1.jpg', alt: 'Nandhini smiling in a pink silk saree', caption: 'Her name means joy — and she lives up to it.', wide: true },
+    { src: 'assets/images/hero.jpg', alt: 'Nandhini and Prabhu holding hands and smiling inside a temple mandapam', caption: 'Hand in hand, with the blessings of the divine.', wide: true },
     { src: 'assets/images/couple-2.jpg', alt: 'Prabhu smiling in a white shirt', caption: 'The man with the never-ending smile.' },
     { src: 'assets/images/couple-3.jpg', alt: 'Nandhini in a purple silk saree in a garden', caption: 'Grace, draped in silk.' },
-    { src: 'assets/images/couple-6.jpg', alt: 'Prabhu in a light blue shirt in front of a flower arch', caption: 'Dressed up, heart wide open.' },
-    { src: 'assets/images/couple-7.jpg', alt: 'Nandhini in a pink and green saree standing on a village road', caption: 'Every road led here.' },
+    { src: 'assets/images/prabhu-temple.jpg', alt: 'Prabhu in a white shirt smiling on the steps of a stone temple mandapam', caption: 'Among ancient pillars, a steady heart.' },
+    { src: 'assets/images/nandhini-temple.jpg', alt: 'Nandhini in a red salwar smiling on the steps of a stone temple mandapam', caption: 'A smile that lights up every stone.' },
     { src: 'assets/images/couple-8.jpg', alt: 'Nandhini and Prabhu holding hands at a temple', caption: 'Two hearts, one promise.', wide: true },
   ],
 
-  blessing: 'With the blessings of our families, we invite you to grace the occasion.',
-  hashtag: '#PranaBegins',
+  blessing: 'With the blessings of our elders and the love of our families, we joyfully invite you to celebrate the engagement of',
 
   wedding: { label: 'The Wedding', when: 'February 2027', note: 'Save the date', link: 'wedding/' },
   footer: { madeBy: 'Karthikeyan', relation: "bride's brother" },
-  music: { src: 'assets/audio/song1.mp4', volume: 0.5, fadeMs: 2000 },
+  music: { src: 'assets/audio/song2.mp3', volume: 0.5, fadeMs: 2000 },
 };
 
 /* Theme metadata used by the picker, the browser bar colour and the particles. */
@@ -235,7 +232,7 @@ function mapsUrl() {
 
 function mapEmbedUrl() {
   const v = CONFIG.venue;
-  return `https://www.google.com/maps?q=${encodeURIComponent(v.mapQuery || `${v.name}, ${v.address}`)}&output=embed`;
+  return `https://www.google.com/maps?q=${encodeURIComponent(v.mapQuery || `${v.name}, ${v.address}`)}&z=16&output=embed`;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -266,9 +263,7 @@ function renderContent() {
     'time.zone': ev.timeZoneName,
     'venue.name': c.venue.name,
     'venue.address': c.venue.address,
-    'hosts.intro': c.hosts.intro,
     blessing: c.blessing,
-    hashtag: c.hashtag,
     'wedding.label': c.wedding.label,
     'wedding.when': c.wedding.when,
     'wedding.note': c.wedding.note,
@@ -295,7 +290,6 @@ function renderContent() {
 
   renderStory();
   renderWordplay();
-  renderHosts();
   renderContacts();
   renderGallery();
 }
@@ -310,7 +304,14 @@ function renderContacts() {
 function renderStory() {
   const box = $('[data-render="story"]');
   if (!box) return;
-  box.innerHTML = CONFIG.story.lines.map((line) => `<p class="story__line" data-reveal>${esc(line)}</p>`).join('');
+  box.innerHTML = CONFIG.story.lines.map((line) => {
+    if (typeof line === 'string') return `<p class="story__line" data-reveal>${esc(line)}</p>`;
+    /* A Thirukkural couplet: two Tamil lines, then its meaning. */
+    return `<blockquote class="kural" data-reveal>
+      <p class="kural__ta" lang="ta">${line.kural.map(esc).join('<br>')}</p>
+      <p class="kural__en">${esc(line.meaning)}</p>
+    </blockquote>`;
+  }).join('');
 }
 
 function renderWordplay() {
@@ -331,12 +332,6 @@ function renderWordplay() {
       <span class="prana__result">${esc(w.result)}</span>
     </p>
     <p class="prana__meaning">${esc(w.meaning)}</p>`;
-}
-
-function renderHosts() {
-  const list = $('[data-render="hosts"]');
-  if (!list) return;
-  list.innerHTML = CONFIG.hosts.names.map((name) => `<li>${esc(name)}</li>`).join('');
 }
 
 function renderGallery() {
